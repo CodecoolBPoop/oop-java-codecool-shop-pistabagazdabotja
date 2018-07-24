@@ -1,0 +1,128 @@
+.header {
+    width: 100%;
+    height: 60px;
+    border-bottom: 3px solid green;
+}
+
+.brand {
+    position: absolute;
+    height: 60px;
+    display: table;
+    justify-content: normal;
+    margin: 0 10px 0 10px;
+}
+
+.brand span{
+    display: table-cell;
+    max-height: 60px;
+    vertical-align: middle;
+    font-size: 42px;
+    font-family: 'Chela One', cursive;
+    color: green;
+    text-shadow: 0 0 2px lightgreen;
+    padding-right: 5px;
+}
+
+.brand span img{
+    height: 45px;
+    padding-bottom: 3px;
+}
+
+.filter {
+    display: inline-block;
+    width: 610px;
+    float: right;
+    text-align: center;
+}
+
+.dropdown {
+    display: inline-block;
+    color: white;
+    font-size: large;
+    width: 300px;
+}
+
+.dropdown button{
+    height: 60px;
+    width: 145px;
+    background-color: green;
+    border: none;
+}
+
+.dropdown-menu {
+    top: 0;
+    width: 150px;
+    max-width: 150px;
+    border: 1px solid green;
+    border-radius: unset;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    min-width: unset;
+    padding: unset;
+    margin: unset;
+}
+
+.dropdown-menu.left {
+    left: unset;
+    right: 150px;
+}
+
+.dropdown-menu.right {
+    left: 150px;
+}
+
+.dropdown-item {
+    width: 150px;
+    color: green;
+}
+
+a.dropdown-item  {
+    display: inline-block;
+    text-decoration: none;
+    margin-left: auto;
+    width: 150px;
+    color: green;
+    text-align: center;
+    font-size: large;
+}
+
+a.dropdown-item:hover {
+    text-decoration: none;
+    color: white;
+    background-color: green;
+}
+
+.container {
+    width: 80%;
+    background-color: white;
+}
+
+.status {
+    display: inline-block;
+    font-weight: bold;
+    color: green;
+    width: 150px;
+}
+
+.cart {
+    display: inline-block;
+    float: right;
+    background-color: green;
+    height: 60px;
+    width: 80px;
+    color: white;
+    font-size: 42px;
+    text-align: center;
+    margin-left: 120px;
+}
+
+.counter {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: white;
+    font-size: larger;
+    background-color: orangered;
+    border: 1px solid orangered;
+    border-radius: 8px;
+}

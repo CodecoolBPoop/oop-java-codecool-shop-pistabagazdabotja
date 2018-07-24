@@ -37,17 +37,28 @@ public class ProductController extends HttpServlet {
 //        context.setVariables(params);
 
         context.setVariable("recipient", "World");
-        context.setVariable("allCategories", productCategoryDataStore.getAll());
+        context.setVariable("categories", productCategoryDataStore.getAll());
+        context.setVariable("suppliers", supplierDataStore.getAll());
 
         // SORT products
         String category = request.getParameter("category");
         String supplier = request.getParameter("supplier");
 
-        if (category != null)
+        if (category != null){
             context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(Integer.valueOf(category))));
-        else if (supplier != null)
+            context.setVariable("category", productCategoryDataStore.find(Integer.parseInt(category)).getName());
+            context.setVariable("supplier", "All suppliers");
+        }
+        else if (supplier != null) {
             context.setVariable("products", productDataStore.getBy(supplierDataStore.find(Integer.valueOf(supplier))));
-        else context.setVariable("products", productDataStore.getAll());
+            context.setVariable("supplier", supplierDataStore.find(Integer.parseInt(supplier)).getName());
+            context.setVariable("category", "All categories");
+        }
+        else {
+            context.setVariable("products", productDataStore.getAll());
+            context.setVariable("category", "All categories");
+            context.setVariable("supplier", "All suppliers");
+        }
 
         engine.process("product/index.html", context, response.getWriter());
     }
