@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Cart")
+@WebServlet(name = "Cart", urlPatterns = {"/cart"})
 public class Cart extends HttpServlet {
 
     @Override
