@@ -25,6 +25,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <script src="/static/js/index.js" defer></script>
 </head>
 
 <body>
@@ -34,9 +35,6 @@
 </div>
 
 <div class="container">
-    <div class="well well-sm">
-        <strong th:text="${category.name}">Category Title</strong>
-    </div>
 
     <div id="products" class="row list-group">
 
@@ -51,7 +49,7 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="#">Add to cart</a>
+                            <a class="btn btn-success addtocart" href="#" th:attr="data-id=${prod.id}">Add to cart</a>
                         </div>
                     </div>
                 </div>
