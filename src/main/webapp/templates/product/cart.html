@@ -39,13 +39,16 @@
         <li th:each="lineItem,iterStat : ${lineItems}">
             <div th:text="${lineItem.getProduct().getName()}">Name</div>
             <div th:text="${lineItem.getAmount()}">2</div>
+            <div th:text="${lineItem.getProduct().getPrice()}">499.0</div><div th:text="${lineItem.getProduct().getDefaultCurrency()}">USD</div>
+            <!--div th:with="result=${lineItem.getProduct().getPrice() * lineItem.getAmount()}"><span th:text="${result}">4990</span></--div>
+            <div th:text="${lineItem.getProduct().getDefaultCurrency()}">USD</div-->
             <a href="#">+</a>
             <a href="#">-</a>
             <a href="#">Remove</a>
         </li>
 
     </ul>
-
+    <div>Total amount</div>
 
 </div>
 <a href="/">Back</a>
