@@ -52,4 +52,11 @@ public class ProductController extends HttpServlet {
         engine.process("product/index.html", context, response.getWriter());
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id = request.getParameter("id");
+        
+
+    }
+
 }
