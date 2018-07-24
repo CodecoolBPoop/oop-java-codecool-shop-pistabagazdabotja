@@ -3,7 +3,7 @@ $(document).on("click", ".addtocart", function () {
     let params = {
         id: item_id,
     };
-    $.post("addtocart", $.param(params), function(response) {
-        // response
+    $.post("/", $.param(params), function(response) {
+        // optional response
     });
 });
