@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Chela+One" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" />
-    <link rel="stylesheet" type="text/css" href="/static/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/cart_checkout.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/static/js/index.js" defer></script>
@@ -30,38 +30,40 @@
 </div>
 
 <div class="content">
-    <ul>
-        <li class="listItem" th:each="lineItem,iterStat : ${lineItems}">
+        <div class="product" th:each="lineItem,iterStat : ${lineItems}">
 
-            <!-- Name -->
-            <div th:text="${lineItem.getProduct().getName()}">Name</div>
+            <img  src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${lineItem.id} + '.jpg'" alt="" />
 
-            <!-- Quantity -->
-            <div>Quantity: </div>
-            <div class="amount" th:text="${lineItem.getAmount()}">5</div>
+            <div class="name-price">
+                <!-- Name -->
+                <div class="name" th:text="${lineItem.getProduct().getName()}">Name</div>
+                <!-- Unit price -->
+                <div class="price" th:text="${lineItem.getProduct().getDefaultPrice()}">99.9</div>
+                <div class="currency" th:text="${lineItem.getProduct().getDefaultCurrency()}"></div>
+            </div>
 
-            <!-- Unit price -->
-            <div class="price" th:text="${lineItem.getProduct().getDefaultPrice()}">99.9</div>
-            <div th:text="${lineItem.getProduct().getDefaultCurrency()}"></div>
+            <div class="right-wrapper">
+                <button class="remove" th:attr="data-id=${lineItem.id}"><i class="fas fa-trash-alt"></i></button>
+                <div class="currency" th:text="${lineItem.getProduct().getDefaultCurrency()}"></div>
+                <div class="subtotal" th:text="${#numbers.formatDecimal(lineItem.getProduct().getDefaultPrice() * lineItem.getAmount(), 0, 'COMMA', 2, 'POINT')}">199.9</div>
+                <div>Subtotal price: </div>
+                <button class="plus" th:attr="data-id=${lineItem.id}"><i class="fas fa-plus-square"></i></button>
+                <div class="amount" th:text="${lineItem.getAmount()}">5</div>
+                <button class="minus" th:attr="data-id=${lineItem.id}"><i class="fas fa-minus-square"></i></button>
+            </div>
+        </div>
 
-            <!-- Subtotal price -->
-            <div>Subtotal price: </div>
-            <div class="subtotal" th:text="${lineItem.getProduct().getDefaultPrice()} * ${lineItem.getAmount()}">199.9</div>
-            <div th:text="${lineItem.getProduct().getDefaultCurrency()}"></div>
-
-            <!-- Edit item -->
-            <a class="plus"  href="#" th:attr="data-id=${lineItem.id}">+</a>
-            <a class="minus" href="#" th:attr="data-id=${lineItem.id}">-</a>
-            <a class="remove" href="#" th:attr="data-id=${lineItem.id}">REMOVE</a>
-        </li>
-
-    </ul>
-    <div>Total price: </div>
-    <div class="total"></div>
+    <div class="total-price">
+        <a href="/"><i class="fas fa-angle-double-left"></i> Back</a>
+        <span><a href="/checkout">Checkout <i class="fas fa-angle-double-right"></i></a></span>
+        <span>USD</span>
+        <span class="total"></span>
+        <span>Total price: </span>
+    </div>
 
 </div>
-<a href="/">Back</a>
-<a href="/checkout">Checkout</a>
+
+
 
 <!--<div th:replace="footer.html :: copy"></div>-->
 
