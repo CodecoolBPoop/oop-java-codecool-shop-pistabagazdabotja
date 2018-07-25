@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Pista ba Webshopja</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Chela+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/content.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="/static/js/index.js" defer></script>
+</head>
+
+<body>
+
+<div class="header">
+    <span class="brand">
+        <span>Pista Ba Gazdaboltja</span>
+        <span><img src="static/assets/leaf.png"></span>
+        <span><img src="static/assets/apple.png"></span>
+        <span><img src="static/assets/shovel.png"></span>
+    </span>
+</div>
+
+<div class="content">
+
+    <h1>Total Price:</h1>
+    <h2 th:text="${totalPrice}">420</h2>
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <div id="paypal-button-container"></div>
+
+    <script>
+
+        // Render the PayPal button
+
+        paypal.Button.render({
+
+            // Set your environment
+
+            env: 'sandbox', // sandbox | production
+
+            // Specify the style of the button
+
+            style: {
+                label: 'checkout',
+                size: 'small',    // small | medium | large | responsive
+                shape: 'pill',     // pill | rect
+                color: 'gold'      // gold | blue | silver | black
+            },
+
+            // PayPal Client IDs - replace with your own
+            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+            client: {
+                sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                production: '<insert production client id>'
+            },
+
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    payment: {
+                        transactions: [
+                            {
+                                amount: {total: '0.01', currency: 'USD'}
+                            }
+                        ]
+                    }
+                });
+            },
+
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    window.alert('Payment Complete!');
+                });
+            }
+
+        }, '#paypal-button-container');
+
+    </script>
+
+    <h1>Or pay with credit card:</h1>
+
+    <form action="/pay" method="POST">
+        <label for="card-number">Card number: </label> <br>
+        <input type="text" id="card-number" name="card-number"> <br>
+
+        <label for="card-holder">Card holder: </label><br>
+        <input type="text" id="card-holder" name="card-holder"><br>
+
+        <label for="expiration-date">Expiration date: </label><br>
+        <input type="text" id="expiration-date" name="expiration-date"><br>
+
+        <label for="cvv">CVV: </label><br>
+        <input type="text" id="cvv" name="cvv"><br>
+
+        <input type="submit" value="SUBMIT">
+    </form>
+
+</div>
+
+<!--<div th:replace="footer.html :: copy"></div>-->
+
+</body>
+</html>
