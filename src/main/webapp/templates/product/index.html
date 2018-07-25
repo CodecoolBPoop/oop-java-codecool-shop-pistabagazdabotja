@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Chela+One" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/content.css" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/static/js/index.js" defer></script>
@@ -27,7 +28,9 @@
     </span>
 
     <div class="cart">
-        <i class="fas fa-shopping-basket"></i>
+        <a href="/cart">
+            <i class="fas fa-shopping-basket"></i>
+        </a>
     </div>
     <div class="counter">
         12
@@ -57,22 +60,28 @@
     </div>
 </div>
 
-<div class="container">
+<div class="content">
+    <div class="advertising">
+        <div class="ad_img">
 
-    <div id="products" class="row list-group">
+        </div>
+    </div>
 
-        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
-                    <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success addtocart" href="#" th:attr="data-id=${prod.id}">Add to cart</a>
+    <div class="products">
+        <div id="products" class="row list-group">
+            <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
+                <div class="thumbnail">
+                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
+                        <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-success addtocart" href="#" th:attr="data-id=${prod.id}">Add to cart</a>
+                            </div>
                         </div>
                     </div>
                 </div>

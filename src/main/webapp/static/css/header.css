@@ -92,11 +92,6 @@ a.dropdown-item:hover {
     background-color: green;
 }
 
-.container {
-    width: 80%;
-    background-color: white;
-}
-
 .status {
     display: inline-block;
     font-weight: bold;
@@ -114,6 +109,14 @@ a.dropdown-item:hover {
     font-size: 42px;
     text-align: center;
     margin-left: 120px;
+}
+
+.cart a{
+    display: inherit;
+    width: inherit;
+    height: inherit;
+    text-decoration: none;
+    color: white;
 }
 
 .counter {

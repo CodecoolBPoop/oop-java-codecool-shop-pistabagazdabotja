@@ -1,0 +1,18 @@
+.advertising {
+    width: 100%;
+    background-color: lightgrey;
+    height: 400px;
+}
+
+.ad_img {
+    background: url("../assets/ad_gumicsizma.jpg") no-repeat center;
+    background-size: contain;
+    height: inherit;
+}
+
+.products {
+    margin: auto;
+    width: 80%;
+    border-left: 2px solid green;
+    border-right: 2px solid green;
+}
