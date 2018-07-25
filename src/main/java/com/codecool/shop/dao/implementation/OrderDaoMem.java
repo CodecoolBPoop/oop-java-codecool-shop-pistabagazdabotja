@@ -76,7 +76,7 @@ public class OrderDaoMem implements OrderDao {
 
     @Override
     public void calculateTotalPrice() {
-        for (LineItem li: data) totalPrice += li.getAmount() * li.getProduct().getDefaultPrice();
+        for (LineItem li : data) totalPrice += li.getAmount() * li.getProduct().getDefaultPrice();
     }
 
     @Override

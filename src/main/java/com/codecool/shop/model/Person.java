@@ -66,6 +66,6 @@ public class Person {
     }
 
     public String toString() {
-        return name + " " + email + " " + phone + " " + getShippingAddress() + " " + getBillingAddress() + " " + getCreditCard();
+        return getName() + " " + getEmail() + " " + getPhone() + " " + getShippingAddress() + " " + getBillingAddress() + " " + getCreditCard();
     }
 }
