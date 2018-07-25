@@ -38,15 +38,12 @@ public class Cart extends HttpServlet {
         switch (action) {
             case "plus":
                 orderDataStore.find(Integer.valueOf(id)).increaseAmount();
-                System.out.println(action);
                 break;
             case "minus":
                 orderDataStore.find(Integer.valueOf(id)).decreaseAmount();
-                System.out.println(action);
                 break;
             case "remove":
                 orderDataStore.remove(Integer.valueOf(id));
-                System.out.println(action);
                 break;
         }
     }

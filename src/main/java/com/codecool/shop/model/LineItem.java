@@ -31,7 +31,7 @@ public class LineItem {
     }
 
     public void decreaseAmount() {
-        if (amount > 0) amount--;
+        if (amount > 1) amount--;
     }
 
     public Supplier getSupplier() {
