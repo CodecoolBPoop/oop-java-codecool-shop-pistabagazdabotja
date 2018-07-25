@@ -1,14 +1,13 @@
 package com.codecool.shop.dao;
 
-import com.codecool.shop.model.LineItem;
-import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.*;
 
 import java.util.List;
 
 public interface OrderDao {
     void add(LineItem product);
+    void setUserData(String name, String email, String phone, Address billingAddress, Address shippingAddress);
+    void printUserData();
     LineItem find(int id);
     void remove(int id);
 
