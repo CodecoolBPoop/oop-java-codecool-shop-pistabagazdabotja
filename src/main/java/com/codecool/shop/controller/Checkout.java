@@ -4,6 +4,7 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.model.Address;
+import com.codecool.shop.model.Person;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -45,7 +46,8 @@ public class Checkout extends HttpServlet {
         String ship_address = request.getParameter("ship-address");
         Address shippingAddress = new Address(ship_country, ship_city, ship_zip, ship_address);
 
-        orderDataStore.setUserData(name, email, phone, billingAddress, shippingAddress);
+        Person person = new Person(name, email, phone, billingAddress, shippingAddress);
+        orderDataStore.setPerson(person);
 
         response.sendRedirect("/pay");
     }

@@ -5,23 +5,15 @@ import com.codecool.shop.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OrderDaoMem implements OrderDao {
-    private boolean isOrderCompleted = false;
-
     private List<LineItem> data = new ArrayList<>();
     private static OrderDaoMem instance = null;
 
-    private String name;
-    private String email;
-    private String phone;
-    private Address billingAddress;
-    private Address shippingAddress;
+    private boolean isOrderCompleted = false;
 
+    private Person person;
     private float totalPrice;
-
-    private CreditCard card;
 
     private OrderDaoMem() {
     }
@@ -33,17 +25,16 @@ public class OrderDaoMem implements OrderDao {
         return instance;
     }
 
+    @Override
     public void orderCompleted() {
         isOrderCompleted = true;
     }
 
-    public void setUserData(String name, String email, String phone, Address billingAddress, Address shippingAddress) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.billingAddress = billingAddress;
-        this.shippingAddress = shippingAddress;
+    @Override
+    public boolean isOrderCompleted() {
+        return isOrderCompleted;
     }
+
 
     @Override
     public void add(LineItem lineitem) {
@@ -74,68 +65,22 @@ public class OrderDaoMem implements OrderDao {
     }
 
     @Override
-    public List<LineItem> getBy(Supplier supplier) {
-        return data.stream().filter(t -> t.getSupplier().equals(supplier)).collect(Collectors.toList());
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
-    public List<LineItem> getBy(ProductCategory productCategory) {
-        return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
+    public Person getPerson() {
+        return person;
     }
 
-    public void addCreditCard(CreditCard card) {
-        this.card = card;
-    }
-
-    public CreditCard getCreditCard() {
-        return card;
-    }
-
-    public float getTotalPrice() {
-        return totalPrice;
-    }
-
+    @Override
     public void calculateTotalPrice() {
         for (LineItem li: data) totalPrice += li.getAmount() * li.getProduct().getDefaultPrice();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Address getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(Address billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
-    public Address getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(Address shippingAddress) {
-        this.shippingAddress = shippingAddress;
+    @Override
+    public float getTotalPrice() {
+        return totalPrice;
     }
 }

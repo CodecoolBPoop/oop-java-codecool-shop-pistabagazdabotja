@@ -37,8 +37,10 @@ public class Pay extends HttpServlet {
         String cvv = request.getParameter("cvv");
 
         CreditCard card = new CreditCard(card_number, card_holder, expiration_date, cvv);
-        orderDataStore.addCreditCard(card);
+        orderDataStore.getPerson().setCreditCard(card);
         orderDataStore.orderCompleted();
+
+        System.out.println(orderDataStore.getPerson());
 
         response.sendRedirect("/");
     }
