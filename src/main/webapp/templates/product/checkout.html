@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>Checkout</title>
 
@@ -13,34 +13,56 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
     <script src="/static/js/index.js" defer></script>
 </head>
-    <form action="checkout.html" method="POST">
-        <label for="name">First Name</label><br>
-        <input type="text" id="name" name="firstname"><br>
-        <label for="name">Last Name</label><br>
-        <input type="text" id="lastname" name="lastname">
-        <label for="email"> Email</label>
-        <input type="text" id="email" name="email">
-        <label for="phone">Credit card number</label>
-        <input type="text" id="phone" name="phone">
-        <label for="address"> Address</label>
-        <input type="text" id="address" name="address">
-        <label for="city">City</label>
-        <input type="text" id="city" name="city">
-        <label for="zip">Zip</label>
-        <input type="text" id="zip" name="zip">
-        <input type="submit" value="Submit">
-    </form>
+<form action="/checkout" method="POST">
+    <label for="name">Full name: </label> <br>
+    <input type="text" id="name" name="name"> <br>
+
+    <label for="email">Email: </label><br>
+    <input type="text" id="email" name="email"><br>
+
+    <label for="phone">Phone number: </label><br>
+    <input type="text" id="phone" name="phone"><br>
+
+
+    <h2>Billing address</h2>
+    <label for="bill-country">Country: </label><br>
+    <input type="text" id="bill-country" name="bill-country"><br>
+
+    <label for="bill-city">City: </label><br>
+    <input type="text" id="bill-city" name="bill-city"><br>
+
+    <label for="bill-zip">ZIP code: </label><br>
+    <input type="text" id="bill-zip" name="bill-zip"><br>
+
+    <label for="bill-address">Address: </label><br>
+    <input type="text" id="bill-address" name="bill-address"><br>
+
+    <h2>Shipping address</h2>
+    <label for="ship-country">Country: </label><br>
+    <input type="text" id="ship-country" name="ship-country"><br>
+
+    <label for="ship-city">City: </label><br>
+    <input type="text" id="ship-city" name="ship-city"><br>
+
+    <label for="ship-zip">ZIP code: </label><br>
+    <input type="text" id="ship-zip" name="ship-zip"><br>
+
+    <label for="ship-address">Address: </label><br>
+    <input type="text" id="ship-address" name="ship-address"><br>
+
+    <input type="submit" value="SUBMIT ORDER">
+</form>
