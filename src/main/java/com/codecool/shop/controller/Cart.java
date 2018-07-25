@@ -27,4 +27,24 @@ public class Cart extends HttpServlet {
 
         engine.process("product/cart.html", context, response.getWriter());
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        OrderDao orderDataStore = OrderDaoMem.getInstance();
+
+        String action = request.getParameter("action");
+        String id = request.getParameter("id");
+
+        switch (action) {
+            case "plus":
+                orderDataStore.find(Integer.valueOf(id)).increaseAmount();
+                break;
+            case "minus":
+                orderDataStore.find(Integer.valueOf(id)).decreaseAmount();
+                break;
+            case "remove":
+                orderDataStore.remove(Integer.valueOf(id));
+                break;
+        }
+    }
 }

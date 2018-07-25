@@ -26,6 +26,7 @@
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
     <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/cart.js" defer></script>
 </head>
 
 <body>
@@ -36,19 +37,33 @@
 
 <div class="container">
     <ul>
-        <li th:each="lineItem,iterStat : ${lineItems}">
+        <li class="listItem" th:each="lineItem,iterStat : ${lineItems}">
+
+            <!-- Name -->
             <div th:text="${lineItem.getProduct().getName()}">Name</div>
-            <div th:text="${lineItem.getAmount()}">2</div>
-            <div th:text="${lineItem.getProduct().getPrice()}">499.0</div><div th:text="${lineItem.getProduct().getDefaultCurrency()}">USD</div>
-            <!--div th:with="result=${lineItem.getProduct().getPrice() * lineItem.getAmount()}"><span th:text="${result}">4990</span></--div>
-            <div th:text="${lineItem.getProduct().getDefaultCurrency()}">USD</div-->
-            <a href="#">+</a>
-            <a href="#">-</a>
-            <a href="#">Remove</a>
+
+            <!-- Quantity -->
+            <div>Quantity: </div>
+            <div class="amount" th:text="${lineItem.getAmount()}">5</div>
+
+            <!-- Unit price -->
+            <div class="price" th:text="${lineItem.getProduct().getDefaultPrice()}">99.9</div>
+            <div th:text="${lineItem.getProduct().getDefaultCurrency()}"></div>
+
+            <!-- Subtotal price -->
+            <div>Subtotal price: </div>
+            <div class="subtotal" th:text="${lineItem.getProduct().getDefaultPrice()} * ${lineItem.getAmount()}">199.9</div>
+            <div th:text="${lineItem.getProduct().getDefaultCurrency()}"></div>
+
+            <!-- Edit item -->
+            <a class="plus"  href="#" th:attr="data-id=${lineItem.id}">+</a>
+            <a class="minus" href="#" th:attr="data-id=${lineItem.id}">-</a>
+            <a class="remove" href="#" th:attr="data-id=${lineItem.id}">REMOVE</a>
         </li>
 
     </ul>
-    <div>Total amount</div>
+    <div>Total price: </div>
+    <div class="total"></div>
 
 </div>
 <a href="/">Back</a>
