@@ -1,16 +1,15 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.OrderDao;
-import com.codecool.shop.model.Address;
-import com.codecool.shop.model.LineItem;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrderDaoMem implements OrderDao {
+    private boolean isOrderCompleted = false;
+
     private List<LineItem> data = new ArrayList<>();
     private static OrderDaoMem instance = null;
 
@@ -20,6 +19,9 @@ public class OrderDaoMem implements OrderDao {
     private Address billingAddress;
     private Address shippingAddress;
 
+    private float totalPrice;
+
+    private CreditCard card;
 
     private OrderDaoMem() {
     }
@@ -31,16 +33,16 @@ public class OrderDaoMem implements OrderDao {
         return instance;
     }
 
+    public void orderCompleted() {
+        isOrderCompleted = true;
+    }
+
     public void setUserData(String name, String email, String phone, Address billingAddress, Address shippingAddress) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
-    }
-
-    public void printUserData() {
-        System.out.println(name + " " + email + " " + phone + " " + billingAddress.toString() + " " + shippingAddress.toString());
     }
 
     @Override
@@ -79,6 +81,22 @@ public class OrderDaoMem implements OrderDao {
     @Override
     public List<LineItem> getBy(ProductCategory productCategory) {
         return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
+    }
+
+    public void addCreditCard(CreditCard card) {
+        this.card = card;
+    }
+
+    public CreditCard getCreditCard() {
+        return card;
+    }
+
+    public float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void calculateTotalPrice() {
+        for (LineItem li: data) totalPrice += li.getAmount() * li.getProduct().getDefaultPrice();
     }
 
     public String getName() {
