@@ -29,7 +29,7 @@ $(document).on("click", ".plus", function () {
     });
 
     let amount = Number($(this).siblings('.amount').text()) + 1;
-    let price = Number($(this).siblings('.price').text());
+    let price = Number($(this).parent().siblings('.name-price').children('.price').text());
 
     $(this).siblings('.amount').text(String(amount));
     $(this).siblings('.subtotal').text(String(amount * price));
@@ -47,7 +47,7 @@ $(document).on("click", ".minus", function () {
     });
 
     let amount = Number($(this).siblings('.amount').text());
-    let price = Number($(this).siblings('.price').text());
+    let price = Number($(this).parent().siblings('.name-price').children('.price').text());
 
     if (amount > 1) amount--;
     $(this).siblings('.amount').text(String(amount));
@@ -55,7 +55,8 @@ $(document).on("click", ".minus", function () {
     calculateTotal();
 });
 
-$(document).on("click", ".remove", function () {
+$(document).on("click", ".remove", function (event) {
+    event.preventDefault();
     let item_id = $(this).data("id");
     let params = {
         action: "remove",
@@ -64,7 +65,7 @@ $(document).on("click", ".remove", function () {
     $.post("/cart", $.param(params), function(response) {
         // optional response
     });
-    $(this).closest(".listItem").remove();
+    $(this).closest(".product").remove();
     calculateTotal();
 });
 
