@@ -1,17 +1,19 @@
 package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.OrderDao;
-import com.codecool.shop.model.LineItem;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OrderDaoMem implements OrderDao {
     private List<LineItem> data = new ArrayList<>();
     private static OrderDaoMem instance = null;
+
+    private boolean isOrderCompleted = false;
+
+    private Person person;
+    private float totalPrice;
 
     private OrderDaoMem() {
     }
@@ -22,6 +24,17 @@ public class OrderDaoMem implements OrderDao {
         }
         return instance;
     }
+
+    @Override
+    public void orderCompleted() {
+        isOrderCompleted = true;
+    }
+
+    @Override
+    public boolean isOrderCompleted() {
+        return isOrderCompleted;
+    }
+
 
     @Override
     public void add(LineItem lineitem) {
@@ -52,12 +65,22 @@ public class OrderDaoMem implements OrderDao {
     }
 
     @Override
-    public List<LineItem> getBy(Supplier supplier) {
-        return data.stream().filter(t -> t.getSupplier().equals(supplier)).collect(Collectors.toList());
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
-    public List<LineItem> getBy(ProductCategory productCategory) {
-        return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
+    public Person getPerson() {
+        return person;
+    }
+
+    @Override
+    public void calculateTotalPrice() {
+        for (LineItem li : data) totalPrice += li.getAmount() * li.getProduct().getDefaultPrice();
+    }
+
+    @Override
+    public float getTotalPrice() {
+        return totalPrice;
     }
 }

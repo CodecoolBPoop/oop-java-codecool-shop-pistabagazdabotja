@@ -1,0 +1,45 @@
+.content {
+    padding-top: 60px;
+}
+
+.advertising {
+    width: 100%;
+    background-color: lightgrey;
+    height: 400px;
+}
+
+.ad_img {
+    background: url("../assets/ad_gumicsizma.jpg") no-repeat center;
+    background-size: contain;
+    height: inherit;
+}
+
+.products {
+    margin: auto;
+    width: 80%;
+    border-left: 2px solid green;
+    border-right: 2px solid green;
+}
+
+.products .row {
+    margin: unset;
+    padding: 5px;
+}
+
+.item {
+    padding: 10px;
+}
+
+.thumbnail {
+    margin: unset;
+}
+
+.thumbnail img {
+    display: inline-block;
+    width: 50%;
+}
+
+.caption {
+    display: inline-block;
+    width: 49%;
+}
