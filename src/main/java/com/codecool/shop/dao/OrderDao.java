@@ -8,6 +8,8 @@ public interface OrderDao {
     void orderCompleted();
     boolean isOrderCompleted();
 
+    void emptyCart();
+    int getNumberOfItems();
     void add(LineItem product);
     LineItem find(int id);
     void remove(int id);
@@ -18,4 +20,5 @@ public interface OrderDao {
 
     void calculateTotalPrice();
     float getTotalPrice();
+
 }

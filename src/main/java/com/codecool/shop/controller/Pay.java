@@ -17,6 +17,8 @@ import java.io.IOException;
 @WebServlet(name = "Pay", urlPatterns = ("/pay"))
 public class Pay extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+
         OrderDao orderDataStore = OrderDaoMem.getInstance();
         orderDataStore.calculateTotalPrice();
 
@@ -40,6 +42,6 @@ public class Pay extends HttpServlet {
         orderDataStore.getPerson().setCreditCard(card);
         orderDataStore.orderCompleted();
 
-        response.sendRedirect("/");
+        response.sendRedirect("/confirmation");
     }
 }

@@ -35,6 +35,15 @@ public class OrderDaoMem implements OrderDao {
         return isOrderCompleted;
     }
 
+    @Override
+    public int getNumberOfItems() {
+        return data.size();
+    }
+
+    @Override
+    public void emptyCart() {
+        this.data.clear();
+    }
 
     @Override
     public void add(LineItem lineitem) {
@@ -63,7 +72,6 @@ public class OrderDaoMem implements OrderDao {
     public List<LineItem> getAll() {
         return data;
     }
-
     @Override
     public void setPerson(Person person) {
         this.person = person;
