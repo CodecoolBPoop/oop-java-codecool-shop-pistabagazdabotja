@@ -40,6 +40,6 @@ public class Pay extends HttpServlet {
         orderDataStore.getPerson().setCreditCard(card);
         orderDataStore.orderCompleted();
 
-        response.sendRedirect("/");
+        response.sendRedirect("/confirmation");
     }
 }
