@@ -1,5 +1,11 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.OrderDao;
+import com.codecool.shop.dao.implementation.OrderDaoMem;
+import com.codecool.shop.model.Address;
+import com.codecool.shop.model.LineItem;
+import com.codecool.shop.model.Person;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,15 +18,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
-@WebServlet(name = "SendEmail", urlPatterns = {"/send-email"})
+import static java.lang.Integer.valueOf;
+
+@WebServlet(name = "SendEmail", urlPatterns = {"/confirmation"})
 public class SendEmail extends HttpServlet {
     public static void sendEmail() {
+        OrderDao orderDataStore = OrderDaoMem.getInstance();
 
         String from = "pistabagazdabotja";
         String pass = "pist@ba123";
-        String[] to = { "azorka3@gmail.com" }; // list of recipient email addresses
-        String subject = "Pista Bácsi gazdaboltja";
-        String body = "Mahahaha";
+        String[] to = {orderDataStore.getPerson().getEmail()}; // list of recipient email addresses
+        String subject = "Confirmation - Pista Bácsi gazdaboltja";
+        String body = createEmailBody();
 
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
@@ -39,11 +48,11 @@ public class SendEmail extends HttpServlet {
             InternetAddress[] toAddress = new InternetAddress[to.length];
 
             // To get the array of addresses
-            for( int i = 0; i < to.length; i++ ) {
+            for (int i = 0; i < to.length; i++) {
                 toAddress[i] = new InternetAddress(to[i]);
             }
 
-            for( int i = 0; i < toAddress.length; i++) {
+            for (int i = 0; i < toAddress.length; i++) {
                 message.addRecipient(Message.RecipientType.TO, toAddress[i]);
             }
 
@@ -54,19 +63,65 @@ public class SendEmail extends HttpServlet {
             transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
-        }
-        catch (AddressException ae) {
+        } catch (AddressException ae) {
             ae.printStackTrace();
-        }
-        catch (MessagingException me) {
+        } catch (MessagingException me) {
             me.printStackTrace();
         }
     }
+
+    public static String createEmailBody() {
+        OrderDao orderDataStore = OrderDaoMem.getInstance();
+        Person p = orderDataStore.getPerson();
+
+        StringBuilder orderDetails = new StringBuilder();
+        for (LineItem order : orderDataStore.getAll()) {
+            orderDetails.append("<br/><br/>Product name: ");
+            orderDetails.append(order.getProduct().getName());
+            orderDetails.append("<br/>");
+            orderDetails.append("Amount: ");
+            orderDetails.append(order.getAmount());
+            orderDetails.append("<br/>");
+            orderDetails.append("Price: ");
+            orderDetails.append(order.getProduct().getPrice());
+            orderDetails.append("<br/>");
+            orderDetails.append("Subtotal ");
+            orderDetails.append(String.valueOf(valueOf(order.getAmount()) * order.getProduct().getDefaultPrice()) + " " + order.getProduct().getDefaultCurrency());
+        }
+
+
+        StringBuilder shippingDetails = new StringBuilder();
+        shippingDetails.append(orderDataStore.getPerson().getShippingAddress().toString());
+
+        String body = "<html>Dear " + p.getName() + "<br/><br/>" +
+                "Your order has been processed." + "<br/><br/>" +
+                "Details: " + orderDetails + "<br/><br/>" +
+                "Total price: " +
+                String.valueOf(orderDataStore.getTotalPrice()) +
+                "<br/><br/>Shipping details: " +
+                shippingDetails +
+                "</html>";
+
+        return body;
+    }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         sendEmail();
 
+        PrintWriter out = response.getWriter();
+
+        out.println(
+                "<html>\n" +
+                        "<head><title>Confirmation</title></head>\n" +
+                        "<body>\n" +
+                        "<h1>Thank you for your purchase!</h1>" +
+                        "<div><a href=\"/\">Back to the main page</a></div>" +
+                        "</body></html>"
+        );
+
 
     }
 }
+
