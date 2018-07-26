@@ -41,6 +41,11 @@ public class OrderDaoMem implements OrderDao {
     }
 
     @Override
+    public void emptyCart() {
+        this.data.clear();
+    }
+
+    @Override
     public void add(LineItem lineitem) {
 
         // Check if exists

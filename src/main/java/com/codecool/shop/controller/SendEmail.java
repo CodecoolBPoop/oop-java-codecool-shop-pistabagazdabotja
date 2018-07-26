@@ -110,6 +110,9 @@ public class SendEmail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         sendEmail();
 
+        OrderDao orderDataStore = OrderDaoMem.getInstance();
+        orderDataStore.emptyCart();
+
         PrintWriter out = response.getWriter();
 
         out.println(
