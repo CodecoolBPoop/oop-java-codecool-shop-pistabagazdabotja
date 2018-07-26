@@ -12,6 +12,8 @@
     background: url("../assets/ad_gumicsizma.jpg") no-repeat center;
     background-size: contain;
     height: inherit;
+    color: white;
+    font-size: xx-large;
 }
 
 .products {
@@ -32,6 +34,7 @@
 
 .thumbnail {
     margin: unset;
+    border: 1px solid lightgrey;
 }
 
 .thumbnail img {
@@ -42,4 +45,23 @@
 .caption {
     display: inline-block;
     width: 49%;
+}
+
+.col {
+    padding: 0;
+}
+
+.col button {
+    float: right;
+    color: green;
+    font-size: larger;
+    border-radius: unset;
+    padding: 3px;
+    border: 1px solid green;
+    background: white;
+}
+
+.col button:hover {
+    color: white;
+    background: green;
 }
