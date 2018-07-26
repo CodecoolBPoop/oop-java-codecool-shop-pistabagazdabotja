@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
@@ -30,14 +28,10 @@ public class ProductController extends HttpServlet {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
-
-//        Map params = new HashMap<>();
-//        params.put("category", productCategoryDataStore.find(1));
-//        params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+        OrderDao orderDataStore = OrderDaoMem.getInstance();
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
-//        context.setVariables(params);
 
         context.setVariable("recipient", "World");
         context.setVariable("categories", productCategoryDataStore.getAll());
@@ -63,6 +57,8 @@ public class ProductController extends HttpServlet {
             context.setVariable("supplier", "All suppliers");
         }
 
+        context.setVariable("counter", Integer.toString(orderDataStore.getNumberOfItems()));
+
         engine.process("product/index.html", context, response.getWriter());
     }
 
@@ -73,6 +69,12 @@ public class ProductController extends HttpServlet {
 
         String id = request.getParameter("id");
         orderDataStore.add(new LineItem(productDataStore.find(Integer.valueOf(id))));
+
+        int numOfProducts = orderDataStore.getNumberOfItems();
+
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(Integer.toString(numOfProducts));
     }
 
 }
