@@ -4,6 +4,6 @@ $(document).on("click", ".addtocart", function () {
         id: item_id,
     };
     $.post("/", $.param(params), function(response) {
-        // optional response
+        $(".counter").text(response);
     });
 });

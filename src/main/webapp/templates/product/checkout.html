@@ -1,68 +1,84 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="author" content="Codecool"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <title>Checkout</title>
-
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
+    <meta charset="utf-8" />
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pista ba Webshopja</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Chela+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/checkout.css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/checkout.js" defer></script>
 </head>
-<form action="/checkout" method="POST">
-    <label for="name">Full name: </label> <br>
-    <input type="text" id="name" name="name"> <br>
+<body>
+    <div class="header">
+        <span class="brand">
+            <span>Pista Ba Gazdaboltja</span>
+            <span><img src="static/assets/leaf.png"></span>
+            <span><img src="static/assets/apple.png"></span>
+            <span><img src="static/assets/shovel.png"></span>
+        </span>
+    </div>
 
-    <label for="email">Email: </label><br>
-    <input type="text" id="email" name="email"><br>
+    <div class="content">
+        <form action="/checkout" method="POST">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 billing col">
+                    <h2>Billing info</h2>
 
-    <label for="phone">Phone number: </label><br>
-    <input type="text" id="phone" name="phone"><br>
+                    <label for="name">Full name / Company name: </label> <br>
+                    <input type="text" id="name" name="name"> <br>
+
+                    <label for="email">Email: </label><br>
+                    <input type="text" id="email" name="email"><br>
+
+                    <label for="phone">Phone number: </label><br>
+                    <input type="text" id="phone" name="phone"><br>
+
+                    <label for="bill-country">Country: </label><br>
+                    <input type="text" id="bill-country" name="bill-country" ><br>
+
+                    <label for="bill-city">City: </label><br>
+                    <input type="text" id="bill-city" name="bill-city"><br>
+
+                    <label for="bill-zip">ZIP code: </label><br>
+                    <input type="text" id="bill-zip" name="bill-zip"><br>
+
+                    <label for="bill-address">Address: </label><br>
+                    <input type="text" id="bill-address" name="bill-address"><br>
+
+                    <label for="shipping-same">Shipping address same as billing address</label>
+                    <input type="checkbox" id="shipping-same" checked>
+                </div>
+                <div class="col-xs-12 col-md-6 shipping col">
+                    <h2>Shipping info</h2>
+
+                    <label for="ship-country">Country: </label><br>
+                    <input type="text" id="ship-country" name="ship-country" class="shipping-input" disabled><br>
+
+                    <label for="ship-city">City: </label><br>
+                    <input type="text" id="ship-city" name="ship-city" class="shipping-input" disabled><br>
+
+                    <label for="ship-zip">ZIP code: </label><br>
+                    <input type="text" id="ship-zip" name="ship-zip" class="shipping-input" disabled><br>
+
+                    <label for="ship-address">Address: </label><br>
+                    <input type="text" id="ship-address" name="ship-address" class="shipping-input" disabled><br>
 
 
-    <h2>Billing address</h2>
-    <label for="bill-country">Country: </label><br>
-    <input type="text" id="bill-country" name="bill-country"><br>
-
-    <label for="bill-city">City: </label><br>
-    <input type="text" id="bill-city" name="bill-city"><br>
-
-    <label for="bill-zip">ZIP code: </label><br>
-    <input type="text" id="bill-zip" name="bill-zip"><br>
-
-    <label for="bill-address">Address: </label><br>
-    <input type="text" id="bill-address" name="bill-address"><br>
-
-    <h2>Shipping address</h2>
-    <label for="ship-country">Country: </label><br>
-    <input type="text" id="ship-country" name="ship-country"><br>
-
-    <label for="ship-city">City: </label><br>
-    <input type="text" id="ship-city" name="ship-city"><br>
-
-    <label for="ship-zip">ZIP code: </label><br>
-    <input type="text" id="ship-zip" name="ship-zip"><br>
-
-    <label for="ship-address">Address: </label><br>
-    <input type="text" id="ship-address" name="ship-address"><br>
-
-    <input type="submit" value="SUBMIT ORDER">
-</form>
+                </div>
+            </div>
+            <div class="bottom-nav">
+                <a href="/cart"><i class="fas fa-angle-double-left"></i> Back</a>
+                <button type="submit">Payment <i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </form>
+    </div>
+</body>
