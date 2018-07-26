@@ -12,8 +12,15 @@
     background: url("../assets/ad_gumicsizma.jpg") no-repeat center;
     background-size: contain;
     height: inherit;
+}
+
+.ad_img span {
+    float: right;
     color: white;
-    font-size: xx-large;
+    padding-top: 150px;
+    font-family: 'Chela One', cursive;
+    font-size: 60px;
+    margin-right: 40px;
 }
 
 .products {

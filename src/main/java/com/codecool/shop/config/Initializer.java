@@ -75,7 +75,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Cirokseprű", 39.9f, "USD", "Letisztult forma, hagyományos minőség.", tools, bosch));
         productDataStore.add(new Product("Talicska", 59.9f, "USD", "Ergonomikus kialakítás, egyszerű működés.", tools, bosch));
 
-        productDataStore.add(new Product("Kombájn", 99999.9f, "USD", "A kombájn, amivel nem marad észrevétlen az utakon.", machines, johndeere));
+        productDataStore.add(new Product("Kombájn", 9999.5f, "USD", "A kombájn, amivel nem marad észrevétlen az utakon.", machines, johndeere));
         productDataStore.add(new Product("Permetező", 99.9f, "USD", "Permetező komoly húsvéti bulihoz.", machines, johndeere));
         productDataStore.add(new Product("Tárcsa", 1999.9f, "USD", "Betárcsázós internethez nélkülözhetetlen.", machines, johndeere));
         productDataStore.add(new Product("Eke", 99.9f, "USD", "Évezredes dizájn.", machines, johndeere));

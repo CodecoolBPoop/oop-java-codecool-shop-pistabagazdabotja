@@ -32,7 +32,7 @@
 <div class="content">
         <div class="product" th:each="lineItem,iterStat : ${lineItems}">
 
-            <img  src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${lineItem.id} + '.jpg'" alt="" />
+            <img  src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${lineItem.getProduct().getId()} + '.jpg'" alt="" />
 
             <div class="name-price">
                 <!-- Name -->
