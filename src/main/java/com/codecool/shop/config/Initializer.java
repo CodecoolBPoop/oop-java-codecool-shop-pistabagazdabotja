@@ -44,17 +44,17 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(umbrella);
 
         // CATEGORIES
-        ProductCategory clothes = new ProductCategory("Clothes", "Hardware", "");
+        ProductCategory clothes = new ProductCategory("Ruházat", "Hardware", "");
         productCategoryDataStore.add(clothes);
-        ProductCategory tools = new ProductCategory("Tools", "Hardware", "");
+        ProductCategory tools = new ProductCategory("Eszközök", "Hardware", "");
         productCategoryDataStore.add(tools);
-        ProductCategory machines = new ProductCategory("Machines", "Hardware", "");
+        ProductCategory machines = new ProductCategory("Gépek", "Hardware", "");
         productCategoryDataStore.add(machines);
-        ProductCategory animals = new ProductCategory("Animals", "Hardware", "");
+        ProductCategory animals = new ProductCategory("Állatok", "Hardware", "");
         productCategoryDataStore.add(animals);
-        ProductCategory people = new ProductCategory("People", "Hardware", "");
+        ProductCategory people = new ProductCategory("Ember", "Hardware", "");
         productCategoryDataStore.add(people);
-        ProductCategory other = new ProductCategory("Other", "Hardware", "");
+        ProductCategory other = new ProductCategory("Egyéb", "Hardware", "");
         productCategoryDataStore.add(other);
 
 
