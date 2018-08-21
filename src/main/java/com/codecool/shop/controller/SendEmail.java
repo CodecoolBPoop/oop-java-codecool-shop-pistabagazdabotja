@@ -1,10 +1,13 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.model.Address;
 import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Person;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -115,17 +118,12 @@ public class SendEmail extends HttpServlet {
         OrderDao orderDataStore = OrderDaoMem.getInstance();
         orderDataStore.emptyCart();
 
-        PrintWriter out = response.getWriter();
 
-        out.println(
-                "<html>\n" +
-                        "<head><title>Confirmation</title></head>\n" +
-                        "<body>\n" +
-                        "<h1>Thank you for your purchase!</h1>" +
-                        "<div><a href=\"/\">Back to the main page</a></div>" +
-                        "</body></html>"
-        );
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
+        WebContext context = new WebContext(request, response, request.getServletContext());
 
+
+        engine.process("product/confirmation.html", context, response.getWriter());
 
     }
 }
