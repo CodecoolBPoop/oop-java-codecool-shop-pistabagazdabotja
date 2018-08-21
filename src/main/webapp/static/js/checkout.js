@@ -1,0 +1,10 @@
+$('#shipping-same').change(function(){
+    if($(this).is(":checked"))
+    {
+        $('.shipping-input').attr("disabled",true);
+    }
+    else
+    {
+        $('.shipping-input').attr("disabled",false);
+    }
+});

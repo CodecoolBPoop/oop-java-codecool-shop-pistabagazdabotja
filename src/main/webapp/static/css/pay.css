@@ -1,0 +1,44 @@
+.content {
+    padding-top: 60px;
+    width: 80%;
+    margin: 0 auto 0 auto;
+    background-color: lightgrey;
+}
+
+h1 {
+    background-color: green;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+}
+
+h2 {
+    padding-bottom: 20px;
+}
+
+.col {
+    padding: 30px 0 30px 150px;
+}
+
+.bottom-nav {
+    width: 100%;
+    background-color: green;
+    height: 45px;
+    font-size: xx-large;
+}
+
+.bottom-nav a , .bottom-nav button{
+    margin: 0 30px 0 30px;
+    border: none;
+    height: 36px;
+    padding: 0 5px 0 5px;
+    text-decoration: none;
+    background-color: white;
+    color: green;
+}
+
+.bottom-nav button {
+    margin-top: 4px;
+    float: right;
+}
