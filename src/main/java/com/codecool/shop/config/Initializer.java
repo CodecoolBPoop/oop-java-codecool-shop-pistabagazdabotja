@@ -44,17 +44,17 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(umbrella);
 
         // CATEGORIES
-        ProductCategory clothes = new ProductCategory("Clothes", "Hardware", "");
+        ProductCategory clothes = new ProductCategory("Ruházat", "Hardware", "");
         productCategoryDataStore.add(clothes);
-        ProductCategory tools = new ProductCategory("Tools", "Hardware", "");
+        ProductCategory tools = new ProductCategory("Eszközök", "Hardware", "");
         productCategoryDataStore.add(tools);
-        ProductCategory machines = new ProductCategory("Machines", "Hardware", "");
+        ProductCategory machines = new ProductCategory("Gépek", "Hardware", "");
         productCategoryDataStore.add(machines);
-        ProductCategory animals = new ProductCategory("Animals", "Hardware", "");
+        ProductCategory animals = new ProductCategory("Állatok", "Hardware", "");
         productCategoryDataStore.add(animals);
-        ProductCategory people = new ProductCategory("People", "Hardware", "");
+        ProductCategory people = new ProductCategory("Ember", "Hardware", "");
         productCategoryDataStore.add(people);
-        ProductCategory other = new ProductCategory("Other", "Hardware", "");
+        ProductCategory other = new ProductCategory("Egyéb", "Hardware", "");
         productCategoryDataStore.add(other);
 
 
@@ -75,7 +75,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Cirokseprű", 39.9f, "USD", "Letisztult forma, hagyományos minőség.", tools, bosch));
         productDataStore.add(new Product("Talicska", 59.9f, "USD", "Ergonomikus kialakítás, egyszerű működés.", tools, bosch));
 
-        productDataStore.add(new Product("Kombájn", 99999.9f, "USD", "A kombájn, amivel nem marad észrevétlen az utakon.", machines, johndeere));
+        productDataStore.add(new Product("Kombájn", 9999.5f, "USD", "A kombájn, amivel nem marad észrevétlen az utakon.", machines, johndeere));
         productDataStore.add(new Product("Permetező", 99.9f, "USD", "Permetező komoly húsvéti bulihoz.", machines, johndeere));
         productDataStore.add(new Product("Tárcsa", 1999.9f, "USD", "Betárcsázós internethez nélkülözhetetlen.", machines, johndeere));
         productDataStore.add(new Product("Eke", 99.9f, "USD", "Évezredes dizájn.", machines, johndeere));

@@ -14,6 +14,15 @@
     height: inherit;
 }
 
+.ad_img span {
+    float: right;
+    color: white;
+    padding-top: 150px;
+    font-family: 'Chela One', cursive;
+    font-size: 60px;
+    margin-right: 40px;
+}
+
 .products {
     margin: auto;
     width: 80%;
@@ -32,6 +41,7 @@
 
 .thumbnail {
     margin: unset;
+    border: 1px solid lightgrey;
 }
 
 .thumbnail img {
@@ -42,4 +52,23 @@
 .caption {
     display: inline-block;
     width: 49%;
+}
+
+.col {
+    padding: 0;
+}
+
+.col button {
+    float: right;
+    color: green;
+    font-size: larger;
+    border-radius: unset;
+    padding: 3px;
+    border: 1px solid green;
+    background: white;
+}
+
+.col button:hover {
+    color: white;
+    background: green;
 }
