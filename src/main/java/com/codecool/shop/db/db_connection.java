@@ -79,7 +79,7 @@ public class db_connection {
         }
     }
 
-    public static List executeQueryWithResult(String query){
+    public static List<Map> executeQueryWithResult(String query){
         Connection conn = getConn();
         Statement statement = null;
         ResultSet rs;
@@ -90,11 +90,11 @@ public class db_connection {
             rs = statement.executeQuery(query);
             rsmd = rs.getMetaData();
             Integer columnCount = rsmd.getColumnCount();
-            Map<String, Object> row;
+            Map<String, String> row;
             while (rs.next()){
                 row = new HashMap<>();
                 for (int i = 1; i <= columnCount; i++){
-                    row.put(rsmd.getColumnName(i), rs.getObject(i));
+                    row.put(rsmd.getColumnName(i), rs.getString(i));
                 }
                 result.add(row);
             }
