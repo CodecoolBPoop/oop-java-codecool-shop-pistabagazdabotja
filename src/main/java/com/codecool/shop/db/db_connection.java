@@ -7,8 +7,8 @@ public class db_connection {
     static final String JDBC_DRIVER = "org.postgresql.Driver";
     static final String DB_URL = "jdbc:postgresql://localhost/codecoolshop";
 
-    static final String USER = "user";
-    static final String PASS = "pass";
+    static final String USER = "milan";
+    static final String PASS = "milan";
 
     private static Connection getConn(){
         Connection conn = null;
@@ -79,18 +79,18 @@ public class db_connection {
         }
     }
 
-    public static List<Map> executeQueryWithResult(String query){
+    public static List<HashMap> executeQueryWithResult(String query){
         Connection conn = getConn();
         Statement statement = null;
         ResultSet rs;
         ResultSetMetaData rsmd;
-        List<Map> result = new LinkedList<>();
+        List<HashMap> result = new LinkedList<>();
         try {
             statement = conn.createStatement();
             rs = statement.executeQuery(query);
             rsmd = rs.getMetaData();
             Integer columnCount = rsmd.getColumnCount();
-            Map<String, String> row;
+            HashMap<String, String> row;
             while (rs.next()){
                 row = new HashMap<>();
                 for (int i = 1; i <= columnCount; i++){

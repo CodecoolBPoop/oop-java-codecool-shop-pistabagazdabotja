@@ -2,11 +2,13 @@ package com.codecool.shop.dao.implementation;
 
 
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.db.db_connection;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,9 +37,13 @@ public class ProductDaoMem implements ProductDao {
 
     @Override
     public Product find(int id) {
-        return data.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
-    }
+        String query = "SELECT * FROM product;";
+        HashMap queryResult = db_connection.executeQueryWithResult(query).get(0);
+        Product asd =  new Product(queryResult);
+        System.out.print(asd.toString());
+        return asd;
 
+    }
     @Override
     public void remove(int id) {
         data.remove(find(id));
@@ -56,5 +62,10 @@ public class ProductDaoMem implements ProductDao {
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
         return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) {
+        ProductDaoMem asd = ProductDaoMem.getInstance();
+        asd.find(1);
     }
 }
