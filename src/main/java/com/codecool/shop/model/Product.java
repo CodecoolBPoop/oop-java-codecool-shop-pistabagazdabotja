@@ -23,6 +23,7 @@ public class Product extends BaseModel {
 
     public Product(HashMap<String, String> data){
         super(data.get("name"), data.get("description"));
+        this.setId(Integer.valueOf(data.get("id")));
         this.setPrice(Float.valueOf(data.get("default_price")), data.get("default_currency"));
         this.setSupplier(SupplierDaoMem.getInstance().find(Integer.valueOf(data.get("supplier_id"))));
         this.setProductCategory(ProductCategoryDaoJDBC.getInstance().find(Integer.valueOf(data.get("category_id"))));

@@ -63,9 +63,4 @@ public class ProductDaoMem implements ProductDao {
     public List<Product> getBy(ProductCategory productCategory) {
         return data.stream().filter(t -> t.getProductCategory().equals(productCategory)).collect(Collectors.toList());
     }
-
-    public static void main(String[] args) {
-        ProductDaoMem asd = ProductDaoMem.getInstance();
-        asd.find(1);
-    }
 }

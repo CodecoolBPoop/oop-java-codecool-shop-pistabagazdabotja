@@ -5,10 +5,10 @@ import java.util.*;
 
 public class db_connection {
     static final String JDBC_DRIVER = "org.postgresql.Driver";
-    static final String DB_URL = "jdbc:postgresql://localhost/pistaba";
+    static final String DB_URL = "jdbc:postgresql://localhost/codecoolshop";
 
-    static final String USER = "";
-    static final String PASS = "";
+    static final String USER = "milan";
+    static final String PASS = "milan";
 
     private static Connection getConn(){
         Connection conn = null;
