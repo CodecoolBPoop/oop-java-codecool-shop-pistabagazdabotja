@@ -9,6 +9,19 @@ import com.codecool.shop.model.Supplier;
 import java.util.*;
 
 public class ProductDaoJDBC implements ProductDao {
+    private static ProductDaoJDBC instance = null;
+
+    /* A private Constructor prevents any other class from instantiating.
+     */
+    private ProductDaoJDBC() {
+    }
+
+    public static ProductDaoJDBC getInstance() {
+        if (instance == null) {
+            instance = new ProductDaoJDBC();
+        }
+        return instance;
+    }
 
     @Override
     public void add(Product product) {

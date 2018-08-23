@@ -1,6 +1,7 @@
 package com.codecool.shop.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Supplier extends BaseModel {
@@ -8,6 +9,11 @@ public class Supplier extends BaseModel {
 
     public Supplier(String name, String description) {
         super(name);
+        this.products = new ArrayList<>();
+    }
+
+    public Supplier(HashMap<String, String> data) {
+        super(data.get("name"));
         this.products = new ArrayList<>();
     }
 

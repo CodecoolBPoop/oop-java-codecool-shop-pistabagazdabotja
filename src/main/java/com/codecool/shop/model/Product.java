@@ -1,5 +1,8 @@
 package com.codecool.shop.model;
 
+import com.codecool.shop.dao.implementation.ProductCategoryDaoJDBC;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
+
 import java.util.Currency;
 import java.util.HashMap;
 
@@ -21,8 +24,8 @@ public class Product extends BaseModel {
     public Product(HashMap<String, String> data){
         super(data.get("name"), data.get("description"));
         this.setPrice(Float.valueOf(data.get("default_price")), data.get("default_currency"));
-        this.setSupplier(null);
-        this.setProductCategory(null);
+        this.setSupplier(SupplierDaoMem.getInstance().find(Integer.valueOf(data.get("supplier_id"))));
+        this.setProductCategory(ProductCategoryDaoJDBC.getInstance().find(Integer.valueOf(data.get("category_id"))));
     }
 
     public float getDefaultPrice() {
