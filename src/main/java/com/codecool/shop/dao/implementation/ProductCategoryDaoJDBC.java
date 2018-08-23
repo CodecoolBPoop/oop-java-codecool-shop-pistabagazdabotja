@@ -6,6 +6,18 @@ import com.codecool.shop.model.ProductCategory;
 import java.util.List;
 
 public class ProductCategoryDaoJDBC implements ProductCategoryDao {
+    private static ProductCategoryDaoJDBC instance = null;
+
+    private ProductCategoryDaoJDBC() {
+    }
+
+    public static ProductCategoryDaoJDBC getInstance() {
+        if (instance == null) {
+            instance = new ProductCategoryDaoJDBC();
+        }
+        return instance;
+    }
+
     @Override
     public void add(ProductCategory category) {
 
